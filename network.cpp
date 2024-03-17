@@ -52,64 +52,117 @@
 #include <execution>
 #include "Constants.h"
 
+/// <summary>
+/// Initializes a new instance of the NetworkDescriptor class.
+/// </summary>
 NetworkDescriptor::NetworkDescriptor() :
+    /// <summary>
+    /// Gets or sets the network type.
+    /// </summary>
     _kind(Network::Kind::FeedForward),
 
+    /// <summary>
+    /// Gets or sets the error function.
+    /// </summary>
     _errorFunction(ErrorFunction::CrossEntropy),
 
+    /// <summary>
+    /// Gets or sets whether to shuffle indices during training.
+    /// </summary>
     _bShuffleIndices(true),
 
+    /// <summary>
+    /// Gets or sets the maxout parameter.
+    /// </summary>
     _maxout_k(2),
 
+    /// <summary>
+    /// Gets or sets the decay rate.
+    /// </summary>
     _decay((float)0.0),
 
+    /// <summary>
+    /// Gets or sets the LRN parameters.
+    /// </summary>
     _LRN_k(2),
-
     _LRN_n(5),
-
     _LRN_alpha((float)0.0001),
-
     _LRN_beta((float)0.75),
 
+    /// <summary>
+    /// Gets or sets the ReLU slope.
+    /// </summary>
     _RELUSlope((float)1.0),
 
+    /// <summary>
+    /// Gets or sets the ELU alpha.
+    /// </summary>
     _ELUAlpha((float)1),
 
+    /// <summary>
+    /// Gets or sets the SELU lambda.
+    /// </summary>
     _SELULambda((float)1.050701),
 
+    /// <summary>
+    /// Gets or sets the sparseness penalty parameters.
+    /// </summary>
     _bSparsenessPenalty(false),
-
     _sparsenessPenalty_p((float)0.0),
-
     _sparsenessPenalty_beta((float)0.0),
 
+    /// <summary>
+    /// Gets or sets the denoising parameters.
+    /// </summary>
     _bDenoising(false),
-
     _denoising_p((float)0.0),
 
+    /// <summary>
+    /// Gets or sets the delta boost parameters.
+    /// </summary>
     _deltaBoost_one((float)1.0),
-
     _deltaBoost_zero((float)1.0),
 
+    /// <summary>
+    /// Gets or sets the SMCE parameters.
+    /// </summary>
     _SMCE_oneTarget((float)0.9),
-
     _SMCE_zeroTarget((float)0.1),
-
     _SMCE_oneScale((float)1.0),
-
     _SMCE_zeroScale((float)1.0),
 
+    /// <summary>
+    /// Gets or sets the name of the network.
+    /// </summary>
     _name(""),
 
+    /// <summary>
+    /// Gets or sets the name for checkpoints.
+    /// </summary>
     _checkpoint_name("checkpoint"),
 
+    /// <summary>
+    /// Gets or sets the interval for checkpointing.
+    /// </summary>
     _checkpoint_interval(0),
 
+    /// <summary>
+    /// Gets or sets the number of epochs between checkpoints.
+    /// </summary>
     _checkpoint_epochs(0),
 
+    /// <summary>
+    /// Gets or sets whether convolutional layers are calculated.
+    /// </summary>
     _bConvLayersCalculated(false)
 {}
 
+/// <summary>
+/// Overloaded stream insertion operator to output the network descriptor to an output stream.
+/// </summary>
+/// <param name="out">The output stream.</param>
+/// <param name="d">The network descriptor to output.</param>
+/// <returns>The output stream.</returns>
 std::ostream& operator<< (std::ostream& out, NetworkDescriptor& d)
 {
     out << "Name: " << d._name << '\n';
@@ -149,56 +202,105 @@ std::ostream& operator<< (std::ostream& out, NetworkDescriptor& d)
     return out;
 }
 
+
+/// <summary>
+/// Validates the network descriptor.
+/// </summary>
+/// <param name="d">The network descriptor to validate.</param>
+/// <returns>True if the network descriptor is valid, false otherwise.</returns>
 bool ValidateNetworkDescriptor(NetworkDescriptor& d)
 {
     return true;
 }
 
+/// <summary>
+/// Retrieves the LRN (Local Response Normalization) parameters.
+/// </summary>
+/// <returns>A tuple containing LRN parameters: (k, n, alpha, beta).</returns>
 std::tuple<float, uint32_t, float, float> Network::GetLRN() const
 {
     return std::make_tuple(_LRN_k, _LRN_n, _LRN_alpha, _LRN_beta);
 }
 
+/// <summary>
+/// Retrieves the decay parameter.
+/// </summary>
+/// <returns>The decay parameter.</returns>
 std::tuple<float> Network::GetDecay() const
 {
     return std::make_tuple(_decay);
 }
 
+/// <summary>
+/// Retrieves the maxout parameter.
+/// </summary>
+/// <returns>The maxout parameter.</returns>
 std::tuple<uint32_t> Network::GetMaxout() const
 {
     return std::make_tuple(_maxout_k);
 }
 
+/// <summary>
+/// Retrieves the sparseness penalty parameters.
+/// </summary>
+/// <returns>A tuple containing sparseness penalty parameters: (p, beta).</returns>
 std::tuple<float, float> Network::GetSparsenessPenalty() const
 {
     return std::make_tuple(_sparsenessPenalty_p, _sparsenessPenalty_beta);
 }
 
+/// <summary>
+/// Retrieves the denoising parameter.
+/// </summary>
+/// <returns>The denoising parameter.</returns>
 std::tuple<float> Network::GetDenoising() const
 {
     return std::make_tuple(_denoising_p);
 }
 
+/// <summary>
+/// Retrieves the delta boost parameters.
+/// </summary>
+/// <returns>A tuple containing delta boost parameters: (one, zero).</returns>
 std::tuple<float, float> Network::GetDeltaBoost() const
 {
     return std::make_tuple(_deltaBoost_one, _deltaBoost_zero);
 }
 
+/// <summary>
+/// Retrieves the SMCE (Softmax Cross-Entropy) parameters.
+/// </summary>
+/// <returns>A tuple containing SMCE parameters: (oneTarget, zeroTarget, oneScale, zeroScale).</returns>
 std::tuple<float, float, float, float> Network::GetSMCE() const
 {
     return std::make_tuple(_SMCE_oneTarget, _SMCE_zeroTarget, _SMCE_oneScale, _SMCE_zeroScale);
 }
 
+/// <summary>
+/// Retrieves whether to shuffle indices or not.
+/// </summary>
+/// <returns>True if shuffle indices, false otherwise.</returns>
 std::tuple<bool> Network::GetShuffleIndices() const
 {
     return std::make_tuple(_bShuffleIndices);
 }
 
+/// <summary>
+/// Retrieves the checkpoint name and interval.
+/// </summary>
+/// <returns>A tuple containing checkpoint name and interval: (name, interval).</returns>
 std::tuple<std::string, int32_t> Network::GetCheckPoint() const
 {
     return make_tuple(_checkpoint_name, _checkpoint_interval);
 }
 
+/// <summary>
+/// Retrieves a pointer to the layer with the specified name from the network.
+/// </summary>
+/// <param name="layerName">The name of the layer to retrieve.</param>
+/// <returns>
+/// A pointer to the layer if found; otherwise, nullptr.
+/// </returns>
 Layer* Network::GetLayer(const std::string& layerName) const
 {
     auto itr = _mLayer.find(layerName);
@@ -225,6 +327,12 @@ Layer* Network::GetLayer(const std::string& layerName) const
     return nullptr;
 }
 
+/// <summary>
+/// Retrieves layers of a specific kind and populates the provided vector with them.
+/// </summary>
+/// <param name="layerKind">The kind of layers to retrieve.</param>
+/// <param name="layers">A vector to store the retrieved layers.</param>
+/// <returns>An iterator pointing to the first element after the inserted layers.</returns>
 std::vector<const Layer*>::iterator Network::GetLayers(Layer::Kind layerKind, std::vector<const Layer*>& layers) const
 {
     try
@@ -250,6 +358,11 @@ std::vector<const Layer*>::iterator Network::GetLayers(Layer::Kind layerKind, st
     }
 }
 
+/// <summary>
+/// Gets a shared pointer to a scratch buffer of the specified size.
+/// </summary>
+/// <param name="size">The size of the scratch buffer.</param>
+/// <returns>A shared pointer to the scratch buffer.</returns>
 std::shared_ptr<float[]> Network::GetScratchBuffer(size_t size)
 {
     if (size > _scratchBufferSize)
@@ -260,11 +373,19 @@ std::shared_ptr<float[]> Network::GetScratchBuffer(size_t size)
     return _pbScratchBuffer;
 }
 
+/// <summary>
+/// Sets the size of the CUDNN workspace.
+/// </summary>
+/// <param name="size">The size of the CUDNN workspace.</param>
 void Network::SetCUDNNWorkspace(size_t size)
 {
     _maxCUDNNWorkspaceSize = std::max(size, _maxCUDNNWorkspaceSize);
 }
 
+/// <summary>
+/// Gets the send buffer for peer-to-peer communication.
+/// </summary>
+/// <returns>The send buffer.</returns>
 float* Network::GetP2PSendBuffer()
 {
     if (_sendIndex < std::size(_pbP2PBuffer)) {
@@ -275,6 +396,10 @@ float* Network::GetP2PSendBuffer()
     }
 }
 
+/// <summary>
+/// Gets the receive buffer for peer-to-peer communication.
+/// </summary>
+/// <returns>The receive buffer.</returns>
 float* Network::GetP2PReceiveBuffer()
 {
     if (_receiveIndex < std::size(_pbP2PBuffer)) {
@@ -285,11 +410,19 @@ float* Network::GetP2PReceiveBuffer()
     }
 }
 
+/// <summary>
+/// Gets the CPU buffer for peer-to-peer communication.
+/// </summary>
+/// <returns>The CPU buffer.</returns>
 auto Network::GetP2PCPUBuffer() -> float*
 {
     return _pCPUBuffer.get();
 }
 
+/// <summary>
+/// Gets the peer buffer for communication.
+/// </summary>
+/// <returns>The peer buffer.</returns>
 float* Network::GetPeerBuffer() const
 {
     if (_receiveIndex < std::size(_pPeerBuffer)) {
@@ -300,6 +433,10 @@ float* Network::GetPeerBuffer() const
     }
 }
 
+/// <summary>
+/// Gets the back buffer for peer-to-peer communication.
+/// </summary>
+/// <returns>The back buffer.</returns>
 float* Network::GetPeerBackBuffer() const
 {
     if (_sendIndex < std::size(_pPeerBuffer)) {
@@ -310,6 +447,14 @@ float* Network::GetPeerBackBuffer() const
     }
 }
 
+/// <summary>
+/// Sets the parameters for LRN (Local Response Normalization).
+/// </summary>
+/// <param name="k">The k parameter.</param>
+/// <param name="n">The n parameter.</param>
+/// <param name="alpha">The alpha parameter.</param>
+/// <param name="beta">The beta parameter.</param>
+/// <returns>True if the parameters are set successfully.</returns>
 bool Network::SetLRN(float k, uint32_t n, float alpha, float beta)
 {
     _LRN_k = k;
@@ -325,6 +470,11 @@ bool Network::SetLRN(float k, uint32_t n, float alpha, float beta)
     return true;
 }
 
+/// <summary>
+/// Sets the decay rate for the network.
+/// </summary>
+/// <param name="decay">The decay rate to set.</param>
+/// <returns>True if the decay rate is set successfully.</returns>
 bool Network::SetDecay(float decay)
 {
     const auto& gpu = getGpu();
@@ -344,6 +494,11 @@ bool Network::SetDecay(float decay)
     return true;
 }
 
+/// <summary>
+/// Sets the maxout parameter for the network.
+/// </summary>
+/// <param name="k">The value of the maxout parameter (k).</param>
+/// <returns>True if the maxout parameter is set successfully.</returns>
 bool Network::SetMaxout(uint32_t k)
 {
     _bDirty = _maxout_k != k;
@@ -356,6 +511,12 @@ bool Network::SetMaxout(uint32_t k)
     return true;
 }
 
+/// <summary>
+/// Sets the sparseness penalty parameters for the network.
+/// </summary>
+/// <param name="p">The target sparseness value (p).</param>
+/// <param name="beta">The beta parameter for sparseness penalty.</param>
+/// <returns>True if the sparseness penalty parameters are set successfully.</returns>
 bool Network::SetSparsenessPenalty(float p, float beta)
 {
     const auto& gpu = getGpu();
@@ -378,6 +539,11 @@ bool Network::SetSparsenessPenalty(float p, float beta)
     return true;
 }
 
+/// <summary>
+/// Sets the denoising probability for the network.
+/// </summary>
+/// <param name="p">The denoising probability to set.</param>
+/// <returns>True if the denoising probability is set successfully.</returns>
 bool Network::SetDenoising(float p)
 {
     const int gpuId = getGpu()._id;
@@ -399,6 +565,12 @@ bool Network::SetDenoising(float p)
     return valid;
 }
 
+/// <summary>
+/// Sets the delta boost parameters for the network.
+/// </summary>
+/// <param name="one">The value for delta boost one.</param>
+/// <param name="zero">The value for delta boost zero.</param>
+/// <returns>True if the delta boost parameters are set successfully; otherwise, false.</returns>
 bool Network::SetDeltaBoost(float one, float zero)
 {
     const int gpuId = getGpu()._id;
@@ -429,6 +601,14 @@ bool Network::SetDeltaBoost(float one, float zero)
     return valid;
 }
 
+/// <summary>
+/// Sets the parameters for Softmax Cross-Entropy (SMCE) for the network.
+/// </summary>
+/// <param name="oneTarget">The target for one in SMCE.</param>
+/// <param name="zeroTarget">The target for zero in SMCE.</param>
+/// <param name="oneScale">The scale for one in SMCE.</param>
+/// <param name="zeroScale">The scale for zero in SMCE.</param>
+/// <returns>True if the parameters are set successfully; otherwise, false.</returns>
 bool Network::SetSMCE(float oneTarget, float zeroTarget, float oneScale, float zeroScale)
 {
     const float minVal = 0.0f, maxVal = 1.0f;
@@ -507,6 +687,12 @@ bool Network::SetSMCE(float oneTarget, float zeroTarget, float oneScale, float z
     }
 }
 
+/// <summary>
+/// Sets the checkpoint filename and interval for the network.
+/// </summary>
+/// <param name="name">The filename for the checkpoint.</param>
+/// <param name="interval">The interval (in epochs) for saving the checkpoint.</param>
+/// <returns>True if the checkpoint filename and interval are set successfully; otherwise, false.</returns>
 bool Network::SetCheckpoint(std::string_view name, int32_t interval) noexcept {
     _checkpoint_name = name;
     _checkpoint_interval = interval;
@@ -3642,6 +3828,12 @@ exit:
     return pNetwork;
 }
 
+/// <summary>
+/// Loads a neural network from a NetCDF file.
+/// </summary>
+/// <param name="fname">The filename of the NetCDF file containing the neural network data.</param>
+/// <param name="batch">The batch size.</param>
+/// <returns>A pointer to the loaded neural network if successful; otherwise, nullptr.</returns>
 Network* LoadNeuralNetworkNetCDF(const std::string& fname, const uint32_t batch) {
     Network* pNetwork = nullptr;
     NetworkDescriptor nd;
@@ -3651,6 +3843,7 @@ Network* LoadNeuralNetworkNetCDF(const std::string& fname, const uint32_t batch)
 
     std::cout << "Loading Neural Network from NetCDF file: " << fname;
 
+    // Broadcast the name of the network descriptor
     MPI_Bcast_string(nd._name);
     nd._bConvLayersCalculated = true;
     int MPI_rank;
@@ -3658,7 +3851,10 @@ Network* LoadNeuralNetworkNetCDF(const std::string& fname, const uint32_t batch)
 
     if (MPI_rank == 0) {
         try {
+            // Open the NetCDF file for reading
             netCDF::NcFile nc(fname, netCDF::NcFile::read);
+
+            // Function to read attribute values from NetCDF file
             auto readAttribute = [&](const std::string& attrName, auto& target) {
                 netCDF::NcGroupAtt attr = nc.getAtt(attrName);
                 if (attr.isNull()) {
@@ -3683,6 +3879,7 @@ Network* LoadNeuralNetworkNetCDF(const std::string& fname, const uint32_t batch)
                 }
                 };
 
+            // List of attribute names to read
             std::vector<std::string> attrNames = {
                 "version", "name", "kind", "errorFunction", "decay", "maxout_k", "LRN_k",
                 "LRN_n", "LRN_alpha", "LRN_beta", "bSparsenessPenalty", "sparsenessPenalty_p",
@@ -3692,10 +3889,12 @@ Network* LoadNeuralNetworkNetCDF(const std::string& fname, const uint32_t batch)
                 "ShuffleIndices", "layers", "weights"
             };
 
+            // Read attributes
             for (const std::string& attrName : attrNames) {
                 readAttribute(attrName, nd._name);
             }
 
+            // Load layer descriptors
             for (uint32_t i = 0; i < layers; i++) {
                 LayerDescriptor ld;
                 if (!LoadLayerDescriptorNetCDF(fname, nc, i, ld)) {
@@ -3704,6 +3903,7 @@ Network* LoadNeuralNetworkNetCDF(const std::string& fname, const uint32_t batch)
                 nd._vLayerDescriptor.push_back(ld);
             }
 
+            // Load weight descriptors
             for (uint32_t i = 0; i < weights; i++) {
                 WeightDescriptor wd;
                 if (!LoadWeightDescriptorNetCDF(fname, nc, i, wd)) {
@@ -3718,6 +3918,7 @@ Network* LoadNeuralNetworkNetCDF(const std::string& fname, const uint32_t batch)
         }
     }
 
+    // Broadcast the result of loading the network from the root process
     MPI_Bcast(&bResult, 1, MPI_C_BOOL, 0, MPI_COMM_WORLD);
 
     if (!bResult) {
@@ -3728,12 +3929,14 @@ Network* LoadNeuralNetworkNetCDF(const std::string& fname, const uint32_t batch)
 
     std::cout << "Broadcasting NetworkDescriptor...";
 
+    // Broadcast the NetworkDescriptor
     MPI_Bcast_NetworkDescriptor(nd);
 
     if (MPI_rank == 0) {
         std::cout << "Enumerating network:\n" << nd;
     }
 
+    // Create a new network using the loaded descriptor and batch size
     pNetwork = new Network(nd, batch);
     pNetwork->RefreshState();
 
@@ -3742,6 +3945,12 @@ Network* LoadNeuralNetworkNetCDF(const std::string& fname, const uint32_t batch)
 }
 
 
+/// <summary>
+/// Broadcasts data from the root GPU to all other GPUs using peer-to-peer (P2P) communication if available.
+/// </summary>
+/// <param name="pBuffer">Pointer to the buffer containing data to be broadcasted.</param>
+/// <param name="size">Size of the buffer in bytes.</param>
+/// <returns>True if the broadcast operation is successful; otherwise, false.</returns>
 bool Network::P2P_Bcast(void* pBuffer, size_t size) {
     auto& gpu = getGpu();
 
@@ -3750,6 +3959,7 @@ bool Network::P2P_Bcast(void* pBuffer, size_t size) {
     }
 
     if (!gpu._bP2P) {
+        // Non-P2P communication implementation
         std::unique_ptr<char[]> pCPUBuffer(new char[size]);
         cudaMemcpy(pCPUBuffer.get(), pBuffer, size, cudaMemcpyDeviceToHost);
         MPI_Bcast(pCPUBuffer.get(), size, MPI_BYTE, 0, MPI_COMM_WORLD);
@@ -3768,6 +3978,7 @@ bool Network::P2P_Bcast(void* pBuffer, size_t size) {
     cudaStreamCreate(&stream);
 
     if (gpu._id == 0) {
+        // Copy data to the P2P send buffer on the root GPU
         cudaError_t status;
         status = cudaMemcpyAsync(GetP2PSendBuffer(), pBuffer, size, cudaMemcpyDeviceToDevice, stream);
         if (status != cudaSuccess) {
@@ -3777,6 +3988,7 @@ bool Network::P2P_Bcast(void* pBuffer, size_t size) {
 
     for (int i = 1; i < NUM_GPUS; ++i) {
         if (gpu._id == i) {
+            // Copy data from the P2P send buffer of the root GPU to the current GPU
             cudaError_t status;
             status = cudaMemcpyPeerAsync(pBuffer, cudaDeviceId, GetP2PSendBuffer(), i, size, stream);
             if (status != cudaSuccess) {
@@ -3785,8 +3997,8 @@ bool Network::P2P_Bcast(void* pBuffer, size_t size) {
         }
     }
 
+    // Synchronize streams and MPI barrier
     cudaStreamSynchronize(stream);
-
     MPI_Barrier(MPI_COMM_WORLD);
 
     cudaStreamDestroy(stream);
@@ -3794,6 +4006,12 @@ bool Network::P2P_Bcast(void* pBuffer, size_t size) {
     return true;
 }
 
+/// <summary>
+/// Performs an allreduce operation using peer-to-peer (P2P) communication among GPUs.
+/// </summary>
+/// <param name="pBuffer">Pointer to the buffer containing data to be reduced.</param>
+/// <param name="size">Size of the buffer.</param>
+/// <returns>True if the allreduce operation is successful; otherwise, false.</returns>
 bool Network::P2P_Allreduce(float* pBuffer, size_t size) {
     const auto& gpu = getGpu();
 
@@ -3801,6 +4019,7 @@ bool Network::P2P_Allreduce(float* pBuffer, size_t size) {
         return true;
     }
 
+    // Function to copy data between CPU and GPU buffers
     auto bufferCopy = [&](auto* destination, auto* source, size_t count, int gpuIndex) {
         cudaSetDevice(gpuIndex);
         auto status = cudaMemcpy(destination, source, count * sizeof(float), cudaMemcpyDefault);
@@ -3809,6 +4028,7 @@ bool Network::P2P_Allreduce(float* pBuffer, size_t size) {
         }
         };
 
+    // Function to synchronize devices and perform MPI barrier
     auto synchronizeAndBarrier = [&]() {
         for (int i = 0; i < NUM_GPUS; ++i) {
             cudaSetDevice(i);
@@ -3823,6 +4043,7 @@ bool Network::P2P_Allreduce(float* pBuffer, size_t size) {
 
     try {
         if (!gpu._bP2P) {
+            // Non-P2P communication implementation
             for (int i = 0; i < NUM_GPUS; ++i) {
                 bufferCopy(_pCPUBuffer.get(), pBuffer, size, i);
             }
@@ -3833,6 +4054,7 @@ bool Network::P2P_Allreduce(float* pBuffer, size_t size) {
             return true;
         }
 
+        // P2P communication implementation
         for (int stage = 0; stage < NUM_GPUS - 1; ++stage) {
             for (int srcGpu = 0; srcGpu < NUM_GPUS; ++srcGpu) {
                 int dstGpu = (srcGpu + stage + 1) % NUM_GPUS;

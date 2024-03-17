@@ -1907,21 +1907,17 @@ std::tuple<float, float> Network::CalculateError(float lambda, float lambda1)
     float error_training = 0.0f;
     float error_regularization = 0.0f;
 
-    uint32_t batch = _batch;
-    if (_position + batch > _examples)
-        batch = _examples - _position;
+    uint32_t batch = std::min(_batch, _examples - _position); // Using std::min to calculate batch size
 
-    for (auto l : _vOutputLayer)
+    for (const auto& l : _vOutputLayer) // Using const auto& for better performance
     {
         error_training += l->CalculateError(_position, batch, _errorFunction);
     }
 
-    if ((lambda != 0.0f) || (lambda1 != 0.0f))
+    if (lambda != 0.0f || lambda1 != 0.0f) // Simplified condition
     {
-        for (auto w : _vWeight)
-        {
-            error_regularization += w->CalculateRegularizationError(lambda, lambda1);
-        }
+        error_regularization = std::accumulate(_vWeight.begin(), _vWeight.end(), 0.0f,
+            [&](float sum, const auto& w) { return sum + w->CalculateRegularizationError(lambda, lambda1); });
     }
 
     if (getGpu()._numprocs > 1)

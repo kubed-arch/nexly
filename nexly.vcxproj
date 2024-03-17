@@ -26,6 +26,7 @@
     <ClCompile Include="weight.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="bitonicSort.cuh" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="enum.h" />
     <ClInclude Include="gpuSort.h" />

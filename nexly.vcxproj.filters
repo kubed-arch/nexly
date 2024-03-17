@@ -70,5 +70,8 @@
     <ClInclude Include="threadPool.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="bitonicSort.cuh">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

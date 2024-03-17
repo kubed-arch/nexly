@@ -1,9 +1,13 @@
 #pragma once
+
 #include <stdexcept>
 #include <type_traits>
 
 namespace DataSetEnums
 {
+    /// <summary>
+    /// Enumeration representing various attributes of a dataset.
+    /// </summary>
     enum Attributes
     {
         Sparse = 1,
@@ -16,6 +20,9 @@ namespace DataSetEnums
         Weighted = 128
     };
 
+    /// <summary>
+    /// Enumeration representing the kind of dataset.
+    /// </summary>
     enum Kind
     {
         Numeric = 0,
@@ -24,6 +31,9 @@ namespace DataSetEnums
         Text = 3
     };
 
+    /// <summary>
+    /// Enumeration representing sharding options for the dataset.
+    /// </summary>
     enum Sharding
     {
         None = 0,
@@ -31,6 +41,9 @@ namespace DataSetEnums
         Data = 2,
     };
 
+    /// <summary>
+    /// Enumeration representing the data types supported by the dataset.
+    /// </summary>
     enum DataType
     {
         UInt = 0,
@@ -45,16 +58,25 @@ namespace DataSetEnums
         Char = 9
     };
 
+    /// <summary>
+    /// Enumeration representing regularization types.
+    /// </summary>
     enum class RegularizationType {
         L1,
         L2
     };
 
+    /// <summary>
+    /// Enumeration representing dataset types.
+    /// </summary>
     enum class DatasetType {
         Indicator,
         Analog
     };
 
+    /// <summary>
+    /// Enumeration representing different types of attention masks.
+    /// </summary>
     enum class AttentionMaskType {
         PADDING = 0,
         CAUSAL = 1,
@@ -62,6 +84,9 @@ namespace DataSetEnums
         BIDIRECTIONALGLM = 3
     };
 
+    /// <summary>
+    /// Enumeration representing different types of position embeddings.
+    /// </summary>
     enum class PositionEmbeddingType : int8_t {
         kLEARNED_ABSOLUTE = 0,
         kROPE_GPTJ = 1,
@@ -71,18 +96,27 @@ namespace DataSetEnums
         kRELATIVE = 5
     };
 
+    /// <summary>
+    /// Enumeration representing different types of rotary scaling.
+    /// </summary>
     enum class RotaryScalingType : int8_t {
         kNONE = 0,
         kLINEAR = 1,
         kDYNAMIC = 2,
     };
 
+    /// <summary>
+    /// Enumeration representing different types of key-value cache data.
+    /// </summary>
     enum class KvCacheDataType {
         BASE = 0,
         INT8,
         FP8
     };
 
+    /// <summary>
+    /// Template concept representing valid data types.
+    /// </summary>
     template <typename T>
     concept ValidDataType = std::is_same_v<T, uint32_t> ||
         std::is_same_v<T, int32_t> ||
@@ -93,6 +127,11 @@ namespace DataSetEnums
         std::is_same_v<T, char> ||
         std::is_same_v<T, unsigned char>;
 
+    /// <summary>
+    /// Function template to get the DataType based on template parameter T.
+    /// </summary>
+    /// <typeparam name="T">The type of data.</typeparam>
+    /// <returns>The DataType corresponding to the type T.</returns>
     template <ValidDataType T>
     inline DataType getDataType()
     {
@@ -133,5 +172,4 @@ namespace DataSetEnums
             throw std::runtime_error("Default data type not defined");
         }
     }
-
 }

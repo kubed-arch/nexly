@@ -38,6 +38,15 @@
     <ClCompile Include="network.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="activation.cu">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sorting.cu">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sparse.cu">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="weight.h">

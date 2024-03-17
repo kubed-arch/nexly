@@ -19,9 +19,12 @@
     <None Include="vcpkg.json" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="activation.cu" />
     <ClCompile Include="gpuTypes.cpp" />
     <ClCompile Include="layer.cpp" />
     <ClCompile Include="network.cpp" />
+    <ClCompile Include="sorting.cu" />
+    <ClCompile Include="sparse.cu" />
     <ClCompile Include="types.cpp" />
     <ClCompile Include="weight.cpp" />
   </ItemGroup>

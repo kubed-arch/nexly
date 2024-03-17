@@ -10,6 +10,33 @@
       <Platform>x64</Platform>
     </ProjectConfiguration>
   </ItemGroup>
+  <ItemGroup>
+    <None Include=".gitignore" />
+    <None Include="CODE_OF_CONDUCT.md" />
+    <None Include="CONTRIBUTING.md" />
+    <None Include="LICENSE" />
+    <None Include="SECURITY.md" />
+    <None Include="vcpkg.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="gpuTypes.cpp" />
+    <ClCompile Include="layer.cpp" />
+    <ClCompile Include="network.cpp" />
+    <ClCompile Include="types.cpp" />
+    <ClCompile Include="weight.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="constants.h" />
+    <ClInclude Include="enum.h" />
+    <ClInclude Include="gpuSort.h" />
+    <ClInclude Include="gpuTypes.h" />
+    <ClInclude Include="kernels.cuh" />
+    <ClInclude Include="layer.h" />
+    <ClInclude Include="network.h" />
+    <ClInclude Include="threadPool.h" />
+    <ClInclude Include="types.h" />
+    <ClInclude Include="weight.h" />
+  </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
     <ProjectGuid>{57e89807-b363-4ca7-95fe-619f0c7a8cdc}</ProjectGuid>
@@ -47,6 +74,7 @@
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
     <LinkIncremental>true</LinkIncremental>
+    <IncludePath>C:\Users\demps\Documents\nexly\vcpkg_installed\x64-windows\include;C:\Users\demps\Documents\nexly\vcpkg_installed\x64-windows\include\openblas;$(IncludePath)</IncludePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <LinkIncremental>false</LinkIncremental>

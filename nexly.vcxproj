@@ -20,6 +20,16 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="activation.cu" />
+    <ClCompile Include="common\assert.cpp" />
+    <ClCompile Include="common\cublasMMWrapper.cpp" />
+    <ClCompile Include="common\cudaDriverWrapper.cpp" />
+    <ClCompile Include="common\cudaFp8Utils.cu" />
+    <ClCompile Include="common\envUtils.cpp" />
+    <ClCompile Include="common\exception.cpp" />
+    <ClCompile Include="common\logger.cpp" />
+    <ClCompile Include="common\memoryUtils.cu" />
+    <ClCompile Include="common\stringUtils.cpp" />
+    <ClCompile Include="common\tensor.cpp" />
     <ClCompile Include="gpuTypes.cpp" />
     <ClCompile Include="layer.cpp" />
     <ClCompile Include="network.cpp" />
@@ -30,6 +40,28 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="bitonicSort.cuh" />
+    <ClInclude Include="common\allocator.h" />
+    <ClInclude Include="common\assert.h" />
+    <ClInclude Include="common\cublasMMWrapper.h" />
+    <ClInclude Include="common\cublasVersionCheck.h" />
+    <ClInclude Include="common\cudaBf16Fallbacks.cuh" />
+    <ClInclude Include="common\cudaBf16Wrapper.h" />
+    <ClInclude Include="common\cudaDriverWrapper.h" />
+    <ClInclude Include="common\cudaFp8Utils.h" />
+    <ClInclude Include="common\cudaTypeUtils.cuh" />
+    <ClInclude Include="common\cudaUtils.h" />
+    <ClInclude Include="common\dataType.h" />
+    <ClInclude Include="common\envUtils.h" />
+    <ClInclude Include="common\exception.h" />
+    <ClInclude Include="common\logger.h" />
+    <ClInclude Include="common\memoryUtils.h" />
+    <ClInclude Include="common\nvtxUtils.h" />
+    <ClInclude Include="common\quantization.h" />
+    <ClInclude Include="common\reduceKernelUtils.cuh" />
+    <ClInclude Include="common\stlUtils.h" />
+    <ClInclude Include="common\stringUtils.h" />
+    <ClInclude Include="common\tensor.h" />
+    <ClInclude Include="common\workspace.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="enum.h" />
     <ClInclude Include="gpuSort.h" />

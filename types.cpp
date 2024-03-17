@@ -731,8 +731,8 @@ void DataSet<T>::CopyDenseData(const void* srcData) {
 }
 
 template<typename T>
-void DataSet<T>::LoadSparseData(const uint64_t* srcSparseStart, const uint64_t* srcSparseEnd,
-    const void* srcSparseData, const uint32_t* srcSparseIndex) {
+void DataSet<T>::LoadSparseData(const std::uint64_t* srcSparseStart, const std::uint64_t* srcSparseEnd,
+    const void* srcSparseData, const std::uint32_t* srcSparseIndex) {
     const T* srcSparseDataTyped = static_cast<const T*>(srcSparseData);
 
     if (_attributes & DataSetEnums::Attributes::Sparse) {
@@ -740,20 +740,20 @@ void DataSet<T>::LoadSparseData(const uint64_t* srcSparseStart, const uint64_t* 
             throw std::runtime_error("Sparse data should be zero-indexed; srcSparseStart[0] != 0");
         }
 
-        uint64_t dataLength = srcSparseEnd[_uniqueExamples - 1];
+        std::uint64_t dataLength = srcSparseEnd[_uniqueExamples - 1];
 
         if (dataLength > _vSparseData.size() || dataLength > _vSparseIndex.size()) {
-            std::stringstream msg;
+            std::ostringstream msg;
             msg << "Not enough space to store sparse data. Allocated: " << _vSparseData.size() << " Required: "
                 << dataLength;
             throw std::length_error(msg.str());
         }
 
-        std::ranges::copy(srcSparseStart, srcSparseStart + _uniqueExamples, _vSparseStart.data());
-        std::ranges::copy(srcSparseEnd, srcSparseEnd + _uniqueExamples, _vSparseEnd.data());
+        std::ranges::copy(srcSparseStart, srcSparseStart + _uniqueExamples, _vSparseStart.begin());
+        std::ranges::copy(srcSparseEnd, srcSparseEnd + _uniqueExamples, _vSparseEnd.begin());
 
-        std::ranges::copy(srcSparseDataTyped, srcSparseDataTyped + dataLength, _vSparseData.data());
-        std::ranges::copy(srcSparseIndex, srcSparseIndex + dataLength, _vSparseIndex.data());
+        std::ranges::copy(srcSparseDataTyped, srcSparseDataTyped + dataLength, _vSparseData.begin());
+        std::ranges::copy(srcSparseIndex, srcSparseIndex + dataLength, _vSparseIndex.begin());
 
         _pbSparseStart->Upload(_vSparseStart.data());
         _pbSparseEnd->Upload(_vSparseEnd.data());

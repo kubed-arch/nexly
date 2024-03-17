@@ -13,20 +13,25 @@
 template <typename KeyType, typename ValueType>
 class GpuSort {
 private:
-    unsigned int _items;
-    unsigned int _itemStride;
-    int _currentGpu;
-    std::vector<cudaStream_t> _streams;
-    std::vector<std::unique_ptr<GpuBuffer<KeyType>>> _pbKeys;
-    std::vector<KeyType*> _pKeys;
-    std::vector<std::unique_ptr<GpuBuffer<ValueType>>> _pbValues;
-    std::vector<ValueType*> _pValues;
-    std::vector<size_t> _tempBytes;
-    std::vector<std::unique_ptr<GpuBuffer<char>>> _pbTemps;
-    MPI_Comm _mpiComm;
-    std::vector<ncclComm_t> _ncclComms;
+    unsigned int _items;                                            ///< Total number of items.
+    unsigned int _itemStride;                                       ///< Stride of items for sorting.
+    int _currentGpu;                                                ///< Index of the current GPU.
+    std::vector<cudaStream_t> _streams;                             ///< CUDA streams for each GPU.
+    std::vector<std::unique_ptr<GpuBuffer<KeyType>>> _pbKeys;       ///< Buffers for keys on each GPU.
+    std::vector<KeyType*> _pKeys;                                   ///< Pointers to keys on each GPU.
+    std::vector<std::unique_ptr<GpuBuffer<ValueType>>> _pbValues;   ///< Buffers for values on each GPU.
+    std::vector<ValueType*> _pValues;                               ///< Pointers to values on each GPU.
+    std::vector<size_t> _tempBytes;                                 ///< Temporary buffer sizes for each GPU.
+    std::vector<std::unique_ptr<GpuBuffer<char>>> _pbTemps;         ///< Temporary buffers for each GPU.
+    MPI_Comm _mpiComm;                                              ///< MPI communicator.
+    std::vector<ncclComm_t> _ncclComms;                             ///< NCCL communicators for each GPU.
 
 public:
+    /// <summary>
+    /// Constructor.
+    /// </summary>
+    /// <param name="items">Total number of items.</param>
+    /// <param name="mpiComm">MPI communicator.</param>
     GpuSort(unsigned int items, MPI_Comm mpiComm)
         : _items(items),
         _itemStride(((items + 511) >> 9) << 9),
@@ -63,6 +68,9 @@ public:
         SetActiveGPU(_currentGpu);
     }
 
+    /// <summary>
+    /// Destructor.
+    /// </summary>
     ~GpuSort() {
         for (int i = 0; i < NUM_GPUS; ++i) {
             cudaSetDevice(i);
@@ -73,6 +81,10 @@ public:
         }
     }
 
+    /// <summary>
+    /// Sets the active GPU.
+    /// </summary>
+    /// <param name="gpu">Index of the GPU.</param>
     void SetActiveGPU(int gpu) {
         if (gpu >= 0 && gpu < NUM_GPUS) {
             _currentGpu = gpu;
@@ -85,6 +97,9 @@ public:
         }
     }
 
+    /// <summary>
+    /// Synchronizes all GPUs.
+    /// </summary>
     void SyncAllGPUs() {
         for (int i = 0; i < NUM_GPUS; ++i) {
             cudaSetDevice(i);
@@ -92,6 +107,9 @@ public:
         }
     }
 
+    /// <summary>
+    /// Exchanges data with other GPUs.
+    /// </summary>
     void ExchangeDataWithOtherGPUs() {
         int rank, size;
         MPI_Comm_rank(_mpiComm, &rank);
@@ -131,24 +149,44 @@ public:
         MPI_Wait(&recvRequest, &recvStatus);
     }
 
+    /// <summary>
+    /// Sorts the data on the current GPU.
+    /// </summary>
+    /// <returns>True if sorting is successful, false otherwise.</returns>
     bool Sort() {
         ExchangeDataWithOtherGPUs();
 
         return kSort(_items, _pKeys[_currentGpu], _pKeys[_currentGpu ^ 1], _pValues[_currentGpu], _pValues[_currentGpu ^ 1], _pbTemps[_currentGpu]->_pDevData, _tempBytes[_currentGpu]);
     }
 
+    /// <summary>
+    /// Gets the buffer for keys on the current GPU.
+    /// </summary>
+    /// <returns>Pointer to the buffer for keys.</returns>
     [[nodiscard]] GpuBuffer<KeyType>* GetKeyBuffer() const {
         return _pbKeys[_currentGpu].get();
     }
 
+    /// <summary>
+    /// Gets the buffer for values on the current GPU.
+    /// </summary>
+    /// <returns>Pointer to the buffer for values.</returns>
     [[nodiscard]] GpuBuffer<ValueType>* GetValueBuffer() const {
         return _pbValues[_currentGpu].get();
     }
 
+    /// <summary>
+    /// Gets the pointer to keys on the current GPU.
+    /// </summary>
+    /// <returns>Pointer to keys.</returns>
     [[nodiscard]] KeyType* GetKeyPointer() const {
         return _pKeys[_currentGpu];
     }
 
+    /// <summary>
+    /// Gets the pointer to values on the current GPU.
+    /// </summary>
+    /// <returns>Pointer to values.</returns>
     [[nodiscard]] ValueType* GetValuePointer() const {
         return _pValues[_currentGpu];
     }

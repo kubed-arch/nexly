@@ -33,6 +33,7 @@
     <ClCompile Include="gpuTypes.cpp" />
     <ClCompile Include="layer.cpp" />
     <ClCompile Include="network.cpp" />
+    <ClCompile Include="nlp\banBadWords.cu" />
     <ClCompile Include="sorting.cu" />
     <ClCompile Include="sparse.cu" />
     <ClCompile Include="types.cpp" />
@@ -69,6 +70,7 @@
     <ClInclude Include="kernels.cuh" />
     <ClInclude Include="layer.h" />
     <ClInclude Include="network.h" />
+    <ClInclude Include="nlp\banBadWords.h" />
     <ClInclude Include="threadPool.h" />
     <ClInclude Include="types.h" />
     <ClInclude Include="weight.h" />

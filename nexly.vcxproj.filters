@@ -19,6 +19,12 @@
     <Filter Include="Header Files\common">
       <UniqueIdentifier>{6cd0b930-7a21-41e8-ae69-03abf29c3df0}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\nlp">
+      <UniqueIdentifier>{8457ed25-ab0a-4a9f-8e3f-c405dfe4e494}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\nlp">
+      <UniqueIdentifier>{cabd2960-7192-4d97-bc1c-ef726fadb07c}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="SECURITY.md" />
@@ -82,6 +88,9 @@
     </ClCompile>
     <ClCompile Include="common\memoryUtils.cu">
       <Filter>Source Files\common</Filter>
+    </ClCompile>
+    <ClCompile Include="nlp\banBadWords.cu">
+      <Filter>Source Files\nlp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -183,6 +192,9 @@
     </ClInclude>
     <ClInclude Include="common\reduceKernelUtils.cuh">
       <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="nlp\banBadWords.h">
+      <Filter>Header Files\nlp</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

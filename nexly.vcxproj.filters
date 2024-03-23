@@ -28,6 +28,9 @@
     <Filter Include="Header Files\executor">
       <UniqueIdentifier>{9572bedd-1540-414f-8aaa-227b5d1f3da4}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\runtime">
+      <UniqueIdentifier>{f7d068eb-24ab-4a04-a79f-fb1424dc2d48}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="SECURITY.md" />
@@ -210,6 +213,57 @@
     </ClInclude>
     <ClInclude Include="executor\types.h">
       <Filter>Header Files\executor</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\bufferManager.h">
+      <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\common.h">
+      <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\cudaEvent.h">
+      <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\cudaStream.h">
+      <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\decodingInput.h">
+      <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\decodingMode.h">
+      <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\decodingOutput.h">
+      <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\generationInput.h">
+      <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\generationOutput.h">
+      <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\iBuffer.h">
+      <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\iStatefulGptDecoder.h">
+      <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\iTensor.h">
+      <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\memoryCounters.h">
+      <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\promptTuningParams.h">
+      <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\samplingConfig.h">
+      <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\tllmLogger.h">
+      <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="runtime\worldConfig.h">
+      <Filter>Header Files\runtime</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

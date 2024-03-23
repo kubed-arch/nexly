@@ -89,6 +89,7 @@
     <ClInclude Include="network.h" />
     <ClInclude Include="nlp\banBadWords.h" />
     <ClInclude Include="nlp\decodingCommon.h" />
+    <ClInclude Include="nlp\gptKernels.h" />
     <ClInclude Include="nlp\kvCacheUtils.h" />
     <ClInclude Include="nlp\lookupKernels.h" />
     <ClInclude Include="nlp\multiHeadAttentionCommon.h" />

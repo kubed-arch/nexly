@@ -328,5 +328,8 @@
     <ClInclude Include="nlp\kvCacheUtils.h">
       <Filter>Header Files\nlp</Filter>
     </ClInclude>
+    <ClInclude Include="nlp\gptKernels.h">
+      <Filter>Header Files\nlp</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

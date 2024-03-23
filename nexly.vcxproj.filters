@@ -101,6 +101,9 @@
     <ClCompile Include="nlp\banBadWords.cu">
       <Filter>Source Files\nlp</Filter>
     </ClCompile>
+    <ClCompile Include="nlp\lookupKernels.cu">
+      <Filter>Source Files\nlp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="weight.h">
@@ -294,6 +297,9 @@
     </ClInclude>
     <ClInclude Include="batch_manager\trtGptModelOptionalParams.h">
       <Filter>Header Files\batch_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="nlp\lookupKernels.h">
+      <Filter>Header Files\nlp</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

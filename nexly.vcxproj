@@ -36,6 +36,7 @@
     <ClCompile Include="nlp\banBadWords.cu" />
     <ClCompile Include="nlp\lookupKernels.cu" />
     <ClCompile Include="nlp\quantization.cu" />
+    <ClCompile Include="nlp\stopCriteriaKernels.cu" />
     <ClCompile Include="sorting.cu" />
     <ClCompile Include="sparse.cu" />
     <ClCompile Include="types.cpp" />
@@ -86,8 +87,11 @@
     <ClInclude Include="layer.h" />
     <ClInclude Include="network.h" />
     <ClInclude Include="nlp\banBadWords.h" />
+    <ClInclude Include="nlp\decodingCommon.h" />
     <ClInclude Include="nlp\lookupKernels.h" />
+    <ClInclude Include="nlp\multiHeadAttentionCommon.h" />
     <ClInclude Include="nlp\quantization.h" />
+    <ClInclude Include="nlp\stopCriteriaKernels.h" />
     <ClInclude Include="runtime\bufferManager.h" />
     <ClInclude Include="runtime\common.h" />
     <ClInclude Include="runtime\cudaEvent.h" />

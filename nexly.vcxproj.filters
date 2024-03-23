@@ -25,6 +25,9 @@
     <Filter Include="Header Files\nlp">
       <UniqueIdentifier>{cabd2960-7192-4d97-bc1c-ef726fadb07c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\executor">
+      <UniqueIdentifier>{9572bedd-1540-414f-8aaa-227b5d1f3da4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="SECURITY.md" />
@@ -195,6 +198,18 @@
     </ClInclude>
     <ClInclude Include="nlp\banBadWords.h">
       <Filter>Header Files\nlp</Filter>
+    </ClInclude>
+    <ClInclude Include="common\arrayView.h">
+      <Filter>Header Files\common</Filter>
+    </ClInclude>
+    <ClInclude Include="executor\executor.h">
+      <Filter>Header Files\executor</Filter>
+    </ClInclude>
+    <ClInclude Include="executor\tensor.h">
+      <Filter>Header Files\executor</Filter>
+    </ClInclude>
+    <ClInclude Include="executor\types.h">
+      <Filter>Header Files\executor</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

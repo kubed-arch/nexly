@@ -42,6 +42,7 @@
   <ItemGroup>
     <ClInclude Include="bitonicSort.cuh" />
     <ClInclude Include="common\allocator.h" />
+    <ClInclude Include="common\arrayView.h" />
     <ClInclude Include="common\assert.h" />
     <ClInclude Include="common\cublasMMWrapper.h" />
     <ClInclude Include="common\cublasVersionCheck.h" />
@@ -65,6 +66,9 @@
     <ClInclude Include="common\workspace.h" />
     <ClInclude Include="constants.h" />
     <ClInclude Include="enum.h" />
+    <ClInclude Include="executor\executor.h" />
+    <ClInclude Include="executor\tensor.h" />
+    <ClInclude Include="executor\types.h" />
     <ClInclude Include="gpuSort.h" />
     <ClInclude Include="gpuTypes.h" />
     <ClInclude Include="kernels.cuh" />

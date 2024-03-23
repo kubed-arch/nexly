@@ -325,5 +325,8 @@
     <ClInclude Include="nlp\selectiveScan.h">
       <Filter>Header Files\nlp</Filter>
     </ClInclude>
+    <ClInclude Include="nlp\kvCacheUtils.h">
+      <Filter>Header Files\nlp</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

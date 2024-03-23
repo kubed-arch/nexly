@@ -36,6 +36,7 @@
     <ClCompile Include="nlp\banBadWords.cu" />
     <ClCompile Include="nlp\lookupKernels.cu" />
     <ClCompile Include="nlp\quantization.cu" />
+    <ClCompile Include="nlp\selectiveScan.cu" />
     <ClCompile Include="nlp\stopCriteriaKernels.cu" />
     <ClCompile Include="sorting.cu" />
     <ClCompile Include="sparse.cu" />
@@ -91,6 +92,7 @@
     <ClInclude Include="nlp\lookupKernels.h" />
     <ClInclude Include="nlp\multiHeadAttentionCommon.h" />
     <ClInclude Include="nlp\quantization.h" />
+    <ClInclude Include="nlp\selectiveScan.h" />
     <ClInclude Include="nlp\stopCriteriaKernels.h" />
     <ClInclude Include="runtime\bufferManager.h" />
     <ClInclude Include="runtime\common.h" />
@@ -170,6 +172,7 @@
     <ClCompile>
       <PreprocessorDefinitions>__CUDACC__;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <LanguageStandard Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">stdcpp20</LanguageStandard>
+      <GpuArchitecture Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">70</GpuArchitecture>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64' and '$(PlatformToolset)'=='HIP_clang'">

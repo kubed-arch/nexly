@@ -110,6 +110,9 @@
     <ClCompile Include="nlp\stopCriteriaKernels.cu">
       <Filter>Source Files\nlp</Filter>
     </ClCompile>
+    <ClCompile Include="nlp\selectiveScan.cu">
+      <Filter>Source Files\nlp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="weight.h">
@@ -317,6 +320,9 @@
       <Filter>Header Files\nlp</Filter>
     </ClInclude>
     <ClInclude Include="nlp\stopCriteriaKernels.h">
+      <Filter>Header Files\nlp</Filter>
+    </ClInclude>
+    <ClInclude Include="nlp\selectiveScan.h">
       <Filter>Header Files\nlp</Filter>
     </ClInclude>
   </ItemGroup>

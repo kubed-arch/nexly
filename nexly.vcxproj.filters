@@ -31,6 +31,9 @@
     <Filter Include="Header Files\runtime">
       <UniqueIdentifier>{f7d068eb-24ab-4a04-a79f-fb1424dc2d48}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\batch_manager">
+      <UniqueIdentifier>{1c9c4767-fd1f-49df-bb49-2ff13e165c02}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <None Include="SECURITY.md" />
@@ -264,6 +267,33 @@
     </ClInclude>
     <ClInclude Include="runtime\worldConfig.h">
       <Filter>Header Files\runtime</Filter>
+    </ClInclude>
+    <ClInclude Include="batch_manager\BatchManager.h">
+      <Filter>Header Files\batch_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="batch_manager\callbacks.h">
+      <Filter>Header Files\batch_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="batch_manager\GptManager.h">
+      <Filter>Header Files\batch_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="batch_manager\inferenceRequest.h">
+      <Filter>Header Files\batch_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="batch_manager\kvCacheConfig.h">
+      <Filter>Header Files\batch_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="batch_manager\llmRequest.h">
+      <Filter>Header Files\batch_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="batch_manager\namedTensor.h">
+      <Filter>Header Files\batch_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="batch_manager\schedulerPolicy.h">
+      <Filter>Header Files\batch_manager</Filter>
+    </ClInclude>
+    <ClInclude Include="batch_manager\trtGptModelOptionalParams.h">
+      <Filter>Header Files\batch_manager</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

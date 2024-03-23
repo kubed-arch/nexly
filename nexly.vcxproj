@@ -34,6 +34,7 @@
     <ClCompile Include="layer.cpp" />
     <ClCompile Include="network.cpp" />
     <ClCompile Include="nlp\banBadWords.cu" />
+    <ClCompile Include="nlp\layernormKernels.cu" />
     <ClCompile Include="nlp\lookupKernels.cu" />
     <ClCompile Include="nlp\quantization.cu" />
     <ClCompile Include="nlp\selectiveScan.cu" />
@@ -91,6 +92,7 @@
     <ClInclude Include="nlp\decodingCommon.h" />
     <ClInclude Include="nlp\gptKernels.h" />
     <ClInclude Include="nlp\kvCacheUtils.h" />
+    <ClInclude Include="nlp\layernormKernels.h" />
     <ClInclude Include="nlp\lookupKernels.h" />
     <ClInclude Include="nlp\multiHeadAttentionCommon.h" />
     <ClInclude Include="nlp\quantization.h" />

@@ -113,6 +113,9 @@
     <ClCompile Include="nlp\selectiveScan.cu">
       <Filter>Source Files\nlp</Filter>
     </ClCompile>
+    <ClCompile Include="nlp\layernormKernels.cu">
+      <Filter>Source Files\nlp</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="weight.h">
@@ -329,6 +332,9 @@
       <Filter>Header Files\nlp</Filter>
     </ClInclude>
     <ClInclude Include="nlp\gptKernels.h">
+      <Filter>Header Files\nlp</Filter>
+    </ClInclude>
+    <ClInclude Include="nlp\layernormKernels.h">
       <Filter>Header Files\nlp</Filter>
     </ClInclude>
   </ItemGroup>
